@@ -3,16 +3,24 @@
 export const siteConfig = {
   name: "葛昊",
   nameEn: "Maxey Ge",
-  title: "AI Transformation Consultant",
-  subtitle: "咨询背景 × AI实践者",
+  title: "AI 转型顾问 & 解决方案工程师",
+  subtitle: "咨询思维 × AI 实践者",
   description:
-    "4年战略咨询经验，现全职投入AI领域，用咨询思维解决企业AI落地问题",
+    "4年战略咨询经验，现全职投入 AI 领域。独立开发多个 AI 应用，用结构化思维帮助企业评估和落地 AI 转型方案。",
   phone: "150-1120-5028",
   email: "gehao628@163.com",
   location: "北京",
   github: "https://github.com/gehao628",
-  resumeUrl: "/resume.pdf", // 放到 public/ 目录下
+  resumeUrl: "/resume.pdf",
 };
+
+// Hero 区统计数据
+export const heroStats = [
+  { label: "咨询经验", value: "4年" },
+  { label: "AI 项目", value: "7+" },
+  { label: "服务企业", value: "30+" },
+  { label: "AI 认证", value: "2项" },
+];
 
 // 导航链接
 export const navLinks = [
@@ -26,7 +34,8 @@ export const navLinks = [
 // AI 能力栈
 export interface AISkillGroup {
   title: string;
-  icon: string; // lucide icon 名称
+  icon: string;
+  color: string; // 分类彩色标签用
   skills: string[];
 }
 
@@ -34,6 +43,7 @@ export const aiSkillGroups: AISkillGroup[] = [
   {
     title: "日常 AI 工具",
     icon: "Sparkles",
+    color: "#6366f1",
     skills: [
       "Claude (重度用户)",
       "GPT-4",
@@ -48,6 +58,7 @@ export const aiSkillGroups: AISkillGroup[] = [
   {
     title: "AI 开发平台",
     icon: "Blocks",
+    color: "#8b5cf6",
     skills: [
       "Coze（扣子）智能体开发",
       "阿里云百炼 智能体开发",
@@ -57,6 +68,7 @@ export const aiSkillGroups: AISkillGroup[] = [
   {
     title: "技术实践",
     icon: "Code",
+    color: "#3b82f6",
     skills: [
       "Agent 开发（RAG / Function Calling / 多Agent编排）",
       "模型微调（LoRA Fine-tuning）",
@@ -66,9 +78,10 @@ export const aiSkillGroups: AISkillGroup[] = [
     ],
   },
   {
-    title: "认证",
+    title: "认证资质",
     icon: "Award",
-    skills: ["科大讯飞 AI 工程师证书"],
+    color: "#f59e0b",
+    skills: ["科大讯飞 AI 工程师证书", "蚂蚁集团 AI 智能体证书"],
   },
 ];
 
@@ -80,62 +93,88 @@ export interface Project {
   link?: string;
   linkLabel?: string;
   type: "live" | "case-study" | "github";
+  status: "online" | "dev" | "completed";
+  screenshot?: string; // /images/projects/xxx.png
 }
 
 export const projects: Project[] = [
   {
     title: "AI 转型评估系统",
-    description: "帮助企业评估AI应用机会，生成定制化转型建议报告",
-    tags: ["LangGraph", "RAG", "Next.js"],
+    description:
+      "帮助企业评估 AI 应用机会，通过多维度问卷 + RAG 知识库，生成定制化转型建议报告",
+    tags: ["LangGraph", "RAG", "Next.js", "Python"],
     link: "http://8.140.217.161",
     linkLabel: "在线体验",
     type: "live",
+    status: "online",
+    screenshot: "/images/projects/ai-assessment.png",
+  },
+  {
+    title: "CompAgent 多智能体系统",
+    description:
+      "基于 LangGraph 的多 Agent 协作系统，支持企业薪酬分析、数据解读等复杂任务",
+    tags: ["LangGraph", "Multi-Agent", "FastAPI"],
+    link: "http://8.140.217.161:8080",
+    linkLabel: "在线体验",
+    type: "live",
+    status: "online",
+    screenshot: "/images/projects/comp-agent.png",
   },
   {
     title: "AI Career Coach",
-    description: "AI驱动的职业发展教练，简历分析+面试模拟",
+    description: "AI 驱动的职业发展教练，简历分析 + 面试模拟 + 职业规划建议",
     tags: ["Claude API", "智谱GLM", "Next.js"],
     link: "https://ai-career-coach-ivory-six.vercel.app",
     linkLabel: "在线体验",
     type: "live",
+    status: "online",
+    screenshot: "/images/projects/career-coach.png",
   },
   {
-    title: "AI 面试教练",
-    description: "语音交互式面试模拟与反馈系统",
-    tags: ["OpenAI API", "Speech Recognition", "Next.js"],
-    link: undefined, // 待确认URL
-    linkLabel: "在线体验",
-    type: "live",
-  },
-  {
-    title: "简历优化器",
-    description: "AI分析简历与JD匹配度，输出优化建议",
-    tags: ["OpenAI API", "Next.js"],
-    link: undefined, // 待确认URL
-    linkLabel: "在线体验",
-    type: "live",
-  },
-  {
-    title: "集体决策AI助手",
-    description: "贝壳集团内部知识问答Agent，整合决策案例与方法论",
+    title: "集体决策 AI 助手",
+    description:
+      "贝壳集团内部知识问答 Agent，整合决策案例与方法论，减少重复咨询",
     tags: ["RAG", "Agent", "知识库"],
     linkLabel: "Case Study",
     type: "case-study",
+    status: "completed",
   },
   {
     title: "提案诊断专家",
-    description: "自动识别提案材料逻辑缺口，输出优化建议",
+    description: "自动识别提案材料逻辑缺口，输出结构化优化建议",
     tags: ["Agent", "Prompt Engineering"],
     linkLabel: "Case Study",
     type: "case-study",
+    status: "completed",
   },
   {
     title: "LoRA 模型微调",
-    description: "基于特定数据集的大模型微调实验",
+    description: "基于特定数据集的大模型微调实验，掌握 Fine-tuning 全流程",
     tags: ["LoRA", "Jupyter", "Fine-tuning"],
     link: "https://github.com/gehao628",
     linkLabel: "GitHub",
     type: "github",
+    status: "completed",
+  },
+];
+
+// 认证证书
+export interface Certification {
+  title: string;
+  issuer: string;
+  image: string; // /images/certs/xxx.png
+}
+
+export const certifications: Certification[] = [
+  {
+    title: "AI 模型微调工程师",
+    issuer: "科大讯飞",
+    image: "/images/certs/科大讯飞ai-模型微调.png",
+  },
+  {
+    title: "AI 智能体开发证书",
+    issuer: "蚂蚁集团",
+    image: "/images/certs/蚂蚁集团ai-智能体证书】.png",
   },
 ];
 
@@ -145,7 +184,7 @@ export interface Experience {
   company: string;
   role: string;
   highlights: string[];
-  isAI?: boolean; // 标记AI相关经历，用于视觉区分
+  isAI?: boolean;
 }
 
 export const experiences: Experience[] = [
@@ -155,10 +194,10 @@ export const experiences: Experience[] = [
     role: "独立 AI 开发者 & 内容创作者",
     isAI: true,
     highlights: [
-      "全职投入AI学习与实践",
-      "考取科大讯飞AI工程师证书",
-      "独立开发并上线多个AI应用（Vibe Coding）",
-      "AI内容创作者：抖音 / 小红书 / 视频号",
+      "全职投入 AI 学习与实践",
+      "考取科大讯飞 AI 工程师证书、蚂蚁集团 AI 智能体证书",
+      "独立开发并上线多个 AI 应用（Vibe Coding）",
+      "AI 内容创作者：抖音 / 小红书 / 视频号",
     ],
   },
   {
@@ -166,11 +205,11 @@ export const experiences: Experience[] = [
     company: "贝壳集团 组织效能中心",
     role: "组织与人才发展高级主管",
     highlights: [
-      "日常工作60%以上已实现AI深度替代/增强",
-      "搭建内部知识问答Agent，减少重复咨询与专家依赖",
-      "开发提案诊断专家Agent，提升上会材料标准化程度",
-      "在团队内部推动Prompt工程方法分享，提升部门AI应用能力",
-      "作为集体决策机制搭建PMO，推动三横六纵治理结构落地",
+      "日常工作 60% 以上已实现 AI 深度替代/增强",
+      "搭建内部知识问答 Agent，减少重复咨询与专家依赖",
+      "开发提案诊断专家 Agent，提升上会材料标准化程度",
+      "在团队内部推动 Prompt 工程方法分享，提升部门 AI 应用能力",
+      "作为集体决策机制搭建 PMO，推动三横六纵治理结构落地",
       "负责集团一/二/三级组织架构变更管理",
     ],
   },

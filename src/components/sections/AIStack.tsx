@@ -1,12 +1,10 @@
 "use client";
 
 import { aiSkillGroups } from "@/lib/data";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Sparkles, Blocks, Code, Award } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import AnimatedSection from "@/components/ui/AnimatedSection";
 
-// 图标映射
 const iconMap: Record<string, LucideIcon> = {
   Sparkles,
   Blocks,
@@ -16,49 +14,54 @@ const iconMap: Record<string, LucideIcon> = {
 
 export default function AIStack() {
   return (
-    <section id="ai-stack" className="bg-white px-6 py-20">
+    <section id="ai-stack" className="bg-white px-6 py-24">
       <div className="mx-auto max-w-5xl">
         {/* 标题 */}
-        <div className="mb-12 text-center">
-          <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
+        <AnimatedSection className="mb-14 text-center">
+          <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
             AI 能力栈
           </h2>
-          <p className="mt-2 text-muted-foreground">
+          <p className="mt-3 text-slate-500">
             从日常工具到底层技术，完整的 AI 实践能力
           </p>
-        </div>
+        </AnimatedSection>
 
-        {/* 卡片网格 */}
+        {/* 玻璃态卡片网格 */}
         <div className="grid gap-6 sm:grid-cols-2">
-          {aiSkillGroups.map((group) => {
+          {aiSkillGroups.map((group, i) => {
             const Icon = iconMap[group.icon] || Sparkles;
             return (
-              <Card
-                key={group.title}
-                className="border border-gray-100 bg-gradient-to-br from-white to-gray-50/50 shadow-sm transition-shadow hover:shadow-md"
-              >
-                <CardHeader className="pb-3">
-                  <CardTitle className="flex items-center gap-2.5 text-base font-semibold">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gray-100">
-                      <Icon size={16} className="text-gray-700" />
+              <AnimatedSection key={group.title} delay={i * 0.1}>
+                <div className="glass-card group rounded-2xl p-6 shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                  {/* 卡片头部 */}
+                  <div className="flex items-center gap-3 mb-4">
+                    <div
+                      className="flex h-10 w-10 items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110"
+                      style={{ backgroundColor: `${group.color}15` }}
+                    >
+                      <Icon
+                        size={20}
+                        style={{ color: group.color }}
+                      />
                     </div>
-                    {group.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
+                    <h3 className="text-lg font-semibold text-slate-900">
+                      {group.title}
+                    </h3>
+                  </div>
+
+                  {/* 技能标签 */}
                   <div className="flex flex-wrap gap-2">
                     {group.skills.map((skill) => (
-                      <Badge
+                      <span
                         key={skill}
-                        variant="secondary"
-                        className="font-normal"
+                        className="inline-flex items-center rounded-full px-3 py-1 text-sm text-slate-600 ring-1 ring-slate-200 bg-white/60 transition-colors hover:ring-indigo-300 hover:text-indigo-600"
                       >
                         {skill}
-                      </Badge>
+                      </span>
                     ))}
                   </div>
-                </CardContent>
-              </Card>
+                </div>
+              </AnimatedSection>
             );
           })}
         </div>
