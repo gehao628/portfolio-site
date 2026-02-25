@@ -1,6 +1,6 @@
 import Header from "@/components/sections/Header";
 import Hero from "@/components/sections/Hero";
-import TransitionZone from "@/components/sections/TransitionZone";
+import Profile from "@/components/sections/Profile";
 import AIStack from "@/components/sections/AIStack";
 import Projects from "@/components/sections/Projects";
 import Experience from "@/components/sections/Experience";
@@ -13,22 +13,13 @@ export default function Home() {
     <>
       <Header />
       <main>
-        {/* 深色区：Hero */}
+        {/* 深色区：Hero + Profile + AIStack */}
         <Hero />
-
-        {/* 过渡：深 → 浅 */}
-        <TransitionZone direction="dark-to-light" />
-
-        {/* 浅色区 */}
+        <Profile />
         <AIStack />
         <Projects />
         <Experience />
         <Education />
-
-        {/* 过渡：浅 → 深 */}
-        <TransitionZone direction="light-to-dark" />
-
-        {/* 深色区：联系 + 页脚 */}
         <Contact />
         <Footer />
       </main>
