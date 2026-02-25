@@ -17,6 +17,8 @@ import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { useRef, type ReactNode } from "react";
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 const iconMap: Record<string, LucideIcon> = {
   Briefcase,
   Brain,
@@ -246,7 +248,7 @@ export default function Profile() {
               >
                 <div className="relative h-44 w-34 overflow-hidden rounded-xl ring-1 ring-white/15 sm:h-52 sm:w-40">
                   <Image
-                    src={siteConfig.photo}
+                    src={`${basePath}${siteConfig.photo}`}
                     alt={siteConfig.name}
                     fill
                     className="object-cover"

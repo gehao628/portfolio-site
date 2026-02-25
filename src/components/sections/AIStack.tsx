@@ -24,6 +24,7 @@ import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { useRef, type ReactNode } from "react";
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 const groupIconMap: Record<string, LucideIcon> = { Sparkles, Blocks, Code };
 
 /* ====== AI 主线 ====== */
@@ -584,7 +585,7 @@ export default function AIStack() {
                 {cert.image ? (
                   <div className="relative h-40 overflow-hidden bg-gradient-to-br from-white/[0.02] to-indigo-500/[0.02] sm:h-44">
                     <Image
-                      src={cert.image}
+                      src={`${basePath}${cert.image}`}
                       alt={cert.title}
                       fill
                       className="object-contain p-3 transition-transform duration-500 group-hover:scale-110"
